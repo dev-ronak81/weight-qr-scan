@@ -196,12 +196,9 @@
     }
 
     @keyframes floatLogo {
-
-      0%,
-      100% {
+      0%, 100% {
         transform: translateY(0px);
       }
-
       50% {
         transform: translateY(-10px);
       }
@@ -467,7 +464,6 @@
     }
 
     @keyframes pulse {
-
       0%,
       100% {
         opacity: 1;
@@ -994,7 +990,7 @@
   <!-- HEADER -->
   <header>
     <div class="logo-section">
-      <img src="logo.png" alt="Logo" class="logo-img">
+      <img src="Logo.png" alt="Logo" class="logo-img">
       <div class="logo-text">
         <div class="logo-title">WeightQrScan</div>
         <div class="logo-subtitle">a Shyam Software's Product</div>
@@ -1015,7 +1011,7 @@
   <!-- HOME TAB (OPENS FIRST) -->
   <div class="tab-content active" id="homeTab">
     <div class="home-page">
-      <img src="logo.png" alt="WeightQrScan Logo" class="home-logo">
+      <img src="Logo.png" alt="WeightQrScan Logo" class="home-logo">
     </div>
   </div>
 
@@ -1375,7 +1371,7 @@
     async function startCamera() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: 'environment', width: { ideal: 640 }, height: { ideal: 480 } }
+          video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 30 } }
         });
         const video = document.getElementById('video');
         video.srcObject = stream;
@@ -1403,7 +1399,7 @@
         const code = jsQR(img.data, img.width, img.height, { inversionAttempts: 'dontInvert' });
         if (code) {
           const now = Date.now();
-          if (code.data !== lastCode || now - lastCodeTime > 2000) {
+          if (code.data !== lastCode || now - lastCodeTime > 1000) {
             lastCode = code.data;
             lastCodeTime = now;
             processQR(code.data);
@@ -1482,7 +1478,7 @@
       }
 
       list.innerHTML = items.map((item, i) => `
-    <div class="item-card ${i === 0 ? 'new' : ''}">
+    <div class="item-card">
       <div class="item-left">
         <div class="item-row1">
           <span class="item-num">#${items.length - i}</span>
@@ -1499,11 +1495,6 @@
       </div>
     </div>
   `).join('');
-
-      setTimeout(() => {
-        const n = list.querySelector('.new');
-        if (n) n.classList.remove('new');
-      }, 600);
     }
 
     function showLastScan(item) {
