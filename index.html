@@ -1635,6 +1635,16 @@
         }
       };
 
+      const onSuccess = (decodedText) => {
+        const now = Date.now();
+        if (decodedText !== lastCode || now - lastCodeTime > 1000) {
+          lastCode = decodedText;
+          lastCodeTime = now;
+          processQR(decodedText);
+          doFlash();
+        }
+      };
+
       try {
         await html5QrCode.start(
           {
@@ -1642,21 +1652,34 @@
             advanced: [{ focusMode: "continuous" }]
           },
           config,
-          (decodedText) => {
-            const now = Date.now();
-            if (decodedText !== lastCode || now - lastCodeTime > 1000) {
-              lastCode = decodedText;
-              lastCodeTime = now;
-              processQR(decodedText);
-              doFlash();
-            }
-          },
+          onSuccess,
           () => { } // ignore per-frame errors
         );
       } catch (e) {
-        html5QrCode = null;
-        document.getElementById('camPlaceholder').style.display = 'flex';
-        showToast('Camera access denied. Allow in browser settings.');
+        try {
+          // Fallback without advanced constraints in case of OverconstrainedError
+          await html5QrCode.start(
+            { facingMode: "environment" },
+            config,
+            onSuccess,
+            () => { }
+          );
+        } catch (fallbackError) {
+          html5QrCode = null;
+          document.getElementById('camPlaceholder').style.display = 'flex';
+          
+          // Identify specific error for the user
+          const errStr = fallbackError.name || fallbackError.message || String(fallbackError);
+          if (errStr.includes('NotAllowedError') || errStr.includes('Permission denied')) {
+            showToast('Camera blocked. Check browser settings.');
+          } else if (errStr.includes('NotFoundError')) {
+            showToast('No camera found on this device.');
+          } else if (errStr.includes('https')) {
+            showToast('HTTPS is required to use the camera.');
+          } else {
+            showToast(`Cam error: ${errStr.substring(0, 40)}`);
+          }
+        }
       }
     }
 
