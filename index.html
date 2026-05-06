@@ -313,11 +313,23 @@
     #qr-reader__header_message,
     #qr-reader__status_span,
     #qr-reader__dashboard_section_csr span,
-    #qr-reader__camera_permission_button { display: none !important; }
+    #qr-reader__camera_permission_button {
+      display: none !important;
+    }
 
-    #qr-reader { border: none !important; min-height: 0; }
-    #qr-reader video { border-radius: 16px; }
-    #qr-reader__scan_region { border-radius: 16px; overflow: hidden; }
+    #qr-reader {
+      border: none !important;
+      min-height: 0;
+    }
+
+    #qr-reader video {
+      border-radius: 16px;
+    }
+
+    #qr-reader__scan_region {
+      border-radius: 16px;
+      overflow: hidden;
+    }
 
     .flash {
       position: fixed;
@@ -1089,7 +1101,8 @@
       <p>Tap to start scanning</p>
     </div>
 
-    <div id="qr-reader" style="margin: 14px 16px 0; border-radius: 16px; overflow: hidden; position: relative; background: #000;"></div>
+    <div id="qr-reader"
+      style="margin: 14px 16px 0; border-radius: 16px; overflow: hidden; position: relative; background: #000;"></div>
     <div class="flash" id="flash"></div>
 
     <!-- TOTAL -->
@@ -1229,7 +1242,7 @@
         <div class="settings-card">
           <h3>QR Column Mapping</h3>
           <div class="info-box">
-            Map QR format: <strong>\val1\val2\val3...</strong><br>
+            Map QR format: <strong>/val1/val2/val3...</strong><br>
             Define what each column represents in your QR code.
           </div>
           <div class="column-mapping" id="columnMapping">
@@ -1520,7 +1533,7 @@
     async function switchTab(tabName) {
       // stop camera when leaving scanner
       if (tabName !== 'scanner' && html5QrCode) {
-        try { await html5QrCode.stop(); html5QrCode = null; } catch(e) {}
+        try { await html5QrCode.stop(); html5QrCode = null; } catch (e) { }
         document.getElementById('camPlaceholder').style.display = 'flex';
       }
 
@@ -1676,7 +1689,7 @@
           isStartingCamera = false;
           html5QrCode = null;
           document.getElementById('camPlaceholder').style.display = 'flex';
-          
+
           // Identify specific error for the user
           const errStr = fallbackError.name || fallbackError.message || String(fallbackError);
           if (errStr.includes('NotAllowedError') || errStr.includes('Permission denied')) {
