@@ -1620,8 +1620,11 @@
 
     // ── CAMERA ──
     let html5QrCode = null;
+    let isStartingCamera = false;
 
     async function startCamera() {
+      if (isStartingCamera) return;
+      isStartingCamera = true;
       document.getElementById('camPlaceholder').style.display = 'none';
 
       html5QrCode = new Html5Qrcode("qr-reader");
@@ -1655,8 +1658,12 @@
           onSuccess,
           () => { } // ignore per-frame errors
         );
+        isStartingCamera = false;
       } catch (e) {
         try {
+          // If first attempt failed, the instance state is dirty ("Cannot transition..."). Recreate it.
+          html5QrCode = new Html5Qrcode("qr-reader");
+
           // Fallback without advanced constraints in case of OverconstrainedError
           await html5QrCode.start(
             { facingMode: "environment" },
@@ -1664,7 +1671,9 @@
             onSuccess,
             () => { }
           );
+          isStartingCamera = false;
         } catch (fallbackError) {
+          isStartingCamera = false;
           html5QrCode = null;
           document.getElementById('camPlaceholder').style.display = 'flex';
           
