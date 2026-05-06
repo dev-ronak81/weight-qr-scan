@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#1a6b3c" />
+  <meta name="theme-color" content="#30034e" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="logo.png" type="image/png" />
-  <title>WeightQrScan</title>
+  <link rel="icon" href="images/Logo192.png" type="image/png" />
+  <title>QrScan</title>
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
@@ -18,7 +18,7 @@
     :root {
       --bg: #f5f5f3;
       --white: #ffffff;
-      --accent: #1a6b3c;
+      --accent: #30034e;
       --accent-light: #e8f5ee;
       --accent-soft: #d0eddb;
       --text: #111111;
@@ -86,7 +86,8 @@
     }
 
     .logo-subtitle {
-      font-size: 10px;
+      font-size: 12px;
+      font-style: bold;
       color: var(--sub);
       font-weight: 500;
       white-space: nowrap;
@@ -177,31 +178,176 @@
       flex-direction: column;
     }
 
-    /* HOME PAGE */
+    /* HOME PAGE RE-DESIGN */
     .home-page {
       flex: 1;
       display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #f5f5f3 0%, #e8f5ee 100%);
+      padding: 24px 16px;
+      gap: 32px;
+      overflow-y: auto;
+    }
+
+    /* GUIDE SECTION */
+    .guide-section {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .guide-section:active {
+      transform: scale(0.98);
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .guide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .guide-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .guide-badge {
+      background: #ff0000;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .guide-img-wrapper {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+
+    .guide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+
+    /* SLIDER SECTION */
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .slider-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .slider-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .slider-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      margin: 0 -16px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .slider-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slider-card {
+      min-width: 80%;
+      max-width: 300px;
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      scroll-snap-align: center;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .slider-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #f8f9fa;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .slider-info {
+      padding: 14px;
+    }
+
+    .slider-info h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    .slider-info p {
+      font-size: 13px;
+      color: var(--sub);
+      line-height: 1.4;
+    }
+
+    /* FOOTER */
+    .app-footer {
+      display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #f5f5f3 0%, #e8f5ee 100%);
-      position: relative;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.3px;
     }
 
-    .home-logo {
-      width: 70%;
-      max-width: 300px;
-      height: auto;
-      opacity: 0.9;
-      animation: floatLogo 3s ease-in-out infinite;
+    .app-footer.sticky-pos {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.04);
+      z-index: 150;
     }
 
-    @keyframes floatLogo {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
+    .footer-logo {
+      width: 18px;
+      height: 18px;
     }
 
     /* CAMERA */
@@ -382,47 +528,91 @@
       background: var(--accent);
       margin: 14px 16px 0;
       border-radius: 16px;
-      padding: 18px 20px;
+      padding: 16px 20px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .total-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .total-row {
+      display: flex;
       justify-content: space-between;
-      box-shadow: 0 4px 20px rgba(26, 107, 60, 0.25);
+      align-items: center;
+    }
+
+    .main-total {
+      margin-top: 4px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .total-label {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 12px;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: .5px;
       text-transform: uppercase;
-      margin-bottom: 4px;
+    }
+
+    .total-val-small {
+      font-family: 'DM Mono', monospace;
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
     }
 
     .total-val {
       font-family: 'DM Mono', monospace;
-      font-size: 34px;
-      font-weight: 500;
+      font-size: 32px;
+      font-weight: 600;
       color: #fff;
       line-height: 1;
     }
 
     .total-unit {
-      font-size: 15px;
-      color: rgba(255, 255, 255, 0.6);
-      margin-left: 4px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-left: 3px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .total-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2px;
+    }
+
+    .scan-count-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.9);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 10px;
     }
 
     .clear-btn {
       background: rgba(255, 255, 255, 0.15);
-      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       color: #fff;
       font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
-      padding: 10px 18px;
-      border-radius: 10px;
+      padding: 8px 16px;
+      border-radius: 8px;
       cursor: pointer;
       white-space: nowrap;
+      transition: background 0.2s;
     }
 
     .clear-btn:active {
@@ -464,6 +654,7 @@
     }
 
     @keyframes pulse {
+
       0%,
       100% {
         opacity: 1;
@@ -515,7 +706,7 @@
     }
 
     .items-list {
-      padding: 0 16px 20px;
+      padding: 0 16px 120px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -558,22 +749,6 @@
       }
     }
 
-    .item-card.new {
-      animation: popIn 0.5s cubic-bezier(0.25, 1.5, 0.5, 1);
-    }
-
-    @keyframes popIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.85) translateY(12px);
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-
     .item-left {
       flex: 1;
       min-width: 0;
@@ -613,8 +788,9 @@
 
     .item-right {
       display: flex;
-      align-items: center;
-      gap: 12px;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
     }
 
     .item-net {
@@ -624,54 +800,59 @@
 
     .net-val {
       font-family: 'DM Mono', monospace;
-      font-size: 22px;
-      font-weight: 600;
+      font-size: 20px;
+      font-weight: 700;
       color: var(--accent);
-      line-height: 1.2;
+      line-height: 1;
     }
 
     .net-unit {
       font-size: 11px;
       color: var(--sub);
       font-weight: 500;
+      margin-top: 4px;
+      display: block;
     }
 
     .delete-item-btn {
-      width: 32px;
-      height: 32px;
-      background: #ffe5e5;
-      border: 1.5px solid #ffcccc;
-      border-radius: 8px;
-      color: var(--danger);
-      font-size: 14px;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: none;
+      color: #ef4444;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       flex-shrink: 0;
-      transition: all 0.2s;
+      transition: transform 0.2s;
     }
 
     .delete-item-btn:active {
-      background: #ffcccc;
-      transform: scale(0.95);
+      transform: scale(0.85);
+    }
+
+    .delete-item-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
     }
 
     /* INSTALL BAR */
     .install-bar {
       position: fixed;
-      bottom: 0;
+      bottom: 43px;
       left: 0;
       right: 0;
       background: var(--white);
       border-top: 1px solid var(--border);
-      padding: 14px 16px;
+      padding: 12px 16px;
       display: none;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
-      z-index: 200;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+      z-index: 140;
     }
 
     .install-bar.show {
@@ -817,13 +998,13 @@
       background: var(--bg);
       border-radius: 16px;
       padding: 20px;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
     .settings-card h3 {
       font-size: 16px;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
       color: var(--text);
     }
 
@@ -865,6 +1046,56 @@
       border-color: var(--accent);
     }
 
+    .item-left {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      min-width: 0;
+      padding-right: 12px;
+    }
+
+    .item-row1 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+    }
+
+    .item-num {
+      font-size: 13px;
+      color: var(--sub);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .item-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .item-sub {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .weight-chip {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 3px 6px;
+      border-radius: 6px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
     .column-mapping {
       display: flex;
       flex-direction: column;
@@ -888,6 +1119,10 @@
 
     .column-select {
       flex: 1;
+      min-width: 0;
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       padding: 10px 12px;
       border: 1.5px solid var(--border);
       border-radius: 8px;
@@ -911,21 +1146,25 @@
     .delete-col-btn {
       width: 36px;
       height: 36px;
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      color: var(--danger);
-      font-size: 16px;
+      background: transparent;
+      border: none;
+      color: #ef4444;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       flex-shrink: 0;
-      transition: background 0.2s;
+      transition: transform 0.2s;
     }
 
     .delete-col-btn:active {
-      background: #ffe5e5;
+      transform: scale(0.85);
+    }
+
+    .delete-col-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
     }
 
     .add-col-btn {
@@ -942,7 +1181,7 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      margin-top: 12px;
+      margin-top: 10px;
       transition: background 0.2s;
     }
 
@@ -950,23 +1189,7 @@
       background: var(--accent-soft);
     }
 
-    .save-settings-btn {
-      width: 100%;
-      padding: 14px;
-      background: var(--accent);
-      border: none;
-      border-radius: 12px;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 20px;
-      box-shadow: 0 4px 16px rgba(26, 107, 60, 0.25);
-    }
 
-    .save-settings-btn:active {
-      background: #145230;
-    }
 
     .info-box {
       background: var(--white);
@@ -990,14 +1213,14 @@
   <!-- HEADER -->
   <header>
     <div class="logo-section">
-      <img src="Logo.png" alt="Logo" class="logo-img">
+      <img src="images/Logo192.png" alt="Logo" class="logo-img">
       <div class="logo-text">
-        <div class="logo-title">WeightQrScan</div>
-        <div class="logo-subtitle">a Shyam Software's Product</div>
+        <div class="logo-title">QrScan - Testing</div>
+        <div class="logo-subtitle">Provided By <span onclick="window.open('https://shyamsoftware.com', '_blank')"
+            style="cursor: pointer; text-decoration: underline; font-weight: 600;">Shyam Software</span></div>
       </div>
     </div>
     <div class="header-right">
-      <div class="badge" id="scanCount">0 items</div>
       <div class="settings-icon" onclick="openSettings()">⚙️</div>
     </div>
   </header>
@@ -1011,20 +1234,40 @@
   <!-- HOME TAB (OPENS FIRST) -->
   <div class="tab-content active" id="homeTab">
     <div class="home-page">
-      <img src="Logo.png" alt="WeightQrScan Logo" class="home-logo">
+
+      <!-- Section 1: Tutorial (How to use PWA) -->
+      <a href="https://www.youtube.com/shorts/A7Tc4GRGp8Q?si=vWBZiUebScqyB2pp" target="_blank" class="guide-section">
+        <div class="guide-header">
+          <div class="guide-title">How to use QrScan 🚀</div>
+          <div class="guide-badge">TUTORIAL</div>
+        </div>
+        <!-- <div style="font-size: 14px; color: var(--sub); line-height: 1.4;">
+          Step-by-step guide to using the PWA scanner and exporting weights.
+        </div> -->
+      </a>
+
+      <!-- Section 2: Weight Software (Software Demo) -->
+      <a href="https://youtube.com/shorts/4ziIHvlNC0U?si=LzL94PoweZDe7VXO" target="_blank" class="guide-section">
+        <div class="guide-header">
+          <div class="guide-title">Explore Weight Software </div>
+          <div class="guide-badge" style="background: #30034e;">SOFTWARE</div>
+        </div>
+        <div class="guide-img-wrapper">
+          <img src="images/wgt-orn-demo.png" alt="Weight Software Demo" class="guide-img">
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
+          <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: var(--accent);">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          <span style="color: var(--accent); font-weight: 700; text-decoration: underline;">More Details</span>
+        </div>
+      </a>
+
     </div>
   </div>
 
   <!-- SCANNER TAB -->
   <div class="tab-content" id="scannerTab">
-    <!-- INSTALL BAR -->
-    <div class="install-bar" id="installBar">
-      <div class="install-text">
-        <strong>Install App</strong>
-        <span>Add to Home Screen for offline access</span>
-      </div>
-      <button class="install-btn" id="installBtn">Install</button>
-    </div>
 
     <!-- CAMERA -->
     <div class="cam-placeholder" id="camPlaceholder" onclick="startCamera()">
@@ -1049,11 +1292,24 @@
 
     <!-- TOTAL -->
     <div class="total-card">
-      <div>
-        <div class="total-label">Total Net Weight</div>
-        <div class="total-val" id="totalVal">0.000<span class="total-unit">g</span></div>
+      <div class="total-info">
+        <div class="total-row">
+          <div class="total-label">Gross Total</div>
+          <div class="total-val-small" id="totalGross">0.000<span class="total-unit">g</span></div>
+        </div>
+        <div class="total-row">
+          <div class="total-label">Less Total</div>
+          <div class="total-val-small" id="totalLess">0.000<span class="total-unit">g</span></div>
+        </div>
+        <div class="total-row main-total">
+          <div class="total-label">Net Total</div>
+          <div class="total-val" id="totalVal">0.000<span class="total-unit">g</span></div>
+        </div>
       </div>
-      <button class="clear-btn" onclick="clearAll()">Clear All</button>
+      <div class="total-footer">
+        <div class="scan-count-badge" id="scanCount">0 items scanned</div>
+        <button class="clear-btn" onclick="clearAll()">Clear</button>
+      </div>
     </div>
 
     <!-- LAST SCAN -->
@@ -1065,7 +1321,11 @@
     <!-- LIST -->
     <div class="list-header">
       <div class="list-title">Scanned Items</div>
-      <button class="export-btn" onclick="exportJSON()">⬇ Export JSON</button>
+      <div style="display: flex; gap: 8px;">
+        <button class="export-btn" onclick="exportCSV()">⬇ CSV</button>
+        <button class="export-btn" onclick="exportPDF()"
+          style="background: var(--accent); color: white; border-color: var(--accent);">📄 PDF Share</button>
+      </div>
     </div>
 
     <div class="items-list" id="itemsList">
@@ -1074,6 +1334,61 @@
         <p>No items yet.<br />Tap camera and scan a QR code.</p>
       </div>
     </div>
+  </div>
+
+  <!-- INSTALL BAR -->
+  <div class="install-bar show" id="installBar">
+    <div class="install-text">
+      <strong id="installTitle">Install App</strong>
+      <span id="installSubtitle">Add to Home Screen for offline access</span>
+    </div>
+    <button class="install-btn" id="installBtn">Install</button>
+  </div>
+
+  <!-- iOS INSTALL HELP MODAL -->
+  <div class="modal-overlay" id="iosHelpModal" onclick="closeIosHelp(event)">
+    <div class="settings-modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title">Install on iPhone / iPad</div>
+        <button class="close-modal-btn" onclick="closeIosHelp()">✕</button>
+      </div>
+      <div class="modal-content" style="padding: 24px; text-align: center;">
+        <div style="font-size: 40px; margin-bottom: 20px;">📲</div>
+        <p style="font-size: 15px; line-height: 1.6; color: var(--text); margin-bottom: 24px;">
+          To install this app on your iPhone, follow these simple steps:
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 16px; text-align: left;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div
+              style="background: var(--accent); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0;">
+              1</div>
+            <p style="font-size: 14px;">Tap the <strong>Share</strong> button <span
+                style="display: inline-block; background: #f0f0f0; padding: 4px; border-radius: 4px;">⎋</span> at the
+              bottom of Safari.</p>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div
+              style="background: var(--accent); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0;">
+              2</div>
+            <p style="font-size: 14px;">Scroll down and tap <strong>"Add to Home Screen"</strong>.</p>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div
+              style="background: var(--accent); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0;">
+              3</div>
+            <p style="font-size: 14px;">Tap <strong>Add</strong> in the top-right corner.</p>
+          </div>
+        </div>
+        <button class="install-btn" onclick="closeIosHelp()" style="margin-top: 32px; width: 100%;">Got it!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL STICKY FOOTER -->
+  <div class="app-footer sticky-pos">
+    Powered by <img src="images/Logo192.png" alt="Logo" class="footer-logo"><strong
+      onclick="window.open('https://shyamsoftware.com', '_blank')"
+      style="cursor: pointer; text-decoration: underline;">Shyam Software</strong>
   </div>
 
   <!-- SETTINGS MODAL (POPUP) -->
@@ -1087,7 +1402,18 @@
       <div class="modal-content">
         <!-- Scan Type -->
         <div class="settings-card">
-          <h3>Item Type</h3>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <h3 style="margin-bottom: 0;">Item Type</h3>
+            <div class="reset-icon-btn" onclick="resetToDefaults()" title="Reset to Defaults"
+              style="color: #ef4444; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; transition: background 0.2s;">
+              <svg viewBox="0 0 24 24"
+                style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+                <path d="M12 7v5l4 2"></path>
+              </svg>
+            </div>
+          </div>
           <div class="form-group">
             <label class="form-label">Select scan type</label>
             <select class="form-select" id="scanTypeSelect" onchange="updateFieldOptions()">
@@ -1112,8 +1438,6 @@
           </button>
         </div>
 
-        <!-- Save Button -->
-        <button class="save-settings-btn" onclick="saveSettings()">Save Settings</button>
       </div>
     </div>
   </div>
@@ -1121,71 +1445,130 @@
   <div class="toast" id="toast"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
   <script>
     // ── SERVICE WORKER ──
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => { });
+      navigator.serviceWorker.register('sw.js').catch(() => { });
     }
 
     // ── PWA INSTALL PROMPT ──
     let deferredPrompt = null;
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
     window.addEventListener('beforeinstallprompt', e => {
       e.preventDefault();
       deferredPrompt = e;
-      document.getElementById('installBar').classList.add('show');
+      const activeTab = document.querySelector('.tab.active');
+      if (activeTab && activeTab.dataset.tab === 'home') {
+        document.getElementById('installBar').classList.add('show');
+      }
     });
 
+    // iOS Specific UI Logic
+    if (isIOS) {
+      document.getElementById('installTitle').innerText = 'Add to Home Screen';
+      document.getElementById('installSubtitle').innerText = 'Tap to see how to install on iPhone';
+      document.getElementById('installBtn').innerText = 'How to Install';
+
+      const activeTab = document.querySelector('.tab.active');
+      if (activeTab && activeTab.dataset.tab === 'home') {
+        document.getElementById('installBar').classList.add('show');
+      }
+    }
+
     document.getElementById('installBtn').addEventListener('click', async () => {
+      if (isIOS) {
+        openIosHelp();
+        return;
+      }
+
       if (!deferredPrompt) return;
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
       deferredPrompt = null;
-      document.getElementById('installBar').classList.remove('show');
     });
 
     window.addEventListener('appinstalled', () => {
-      document.getElementById('installBar').classList.remove('show');
+      // Keep showing as requested
     });
+
+    function openIosHelp() {
+      document.getElementById('iosHelpModal').classList.add('show');
+    }
+
+    function closeIosHelp(event) {
+      if (event && event.target !== event.currentTarget) return;
+      document.getElementById('iosHelpModal').classList.remove('show');
+    }
+
 
     // ── FIELD OPTIONS ──
     const FIELD_OPTIONS = {
       piece: [
+        { value: 'batchNumber', label: 'Bar No' },
         { value: 'itemName', label: 'Item Name' },
         { value: 'grossWeight', label: 'Gross Weight' },
         { value: 'netWeight', label: 'Net Weight' },
-        { value: 'tareWeight', label: 'Tare Weight' },
-        { value: 'batchNumber', label: 'Batch Number' },
+        { value: 'lessWeight', label: 'Less Weight' },
         { value: 'date', label: 'Date' },
         { value: 'skip', label: 'Skip / Ignore' }
       ],
       box: [
+        { value: 'batchNumber', label: 'Bar No' },
         { value: 'itemName', label: 'Item Name' },
         { value: 'grossWeight', label: 'Gross Weight' },
         { value: 'netWeight', label: 'Net Weight' },
-        { value: 'tareWeight', label: 'Tare Weight' },
+        { value: 'lessWeight', label: 'Less Weight' },
         { value: 'boxWeight', label: 'Box Weight' },
         { value: 'bagWeight', label: 'Bag Weight' },
-        { value: 'bagCount', label: 'Bag Count' },
+        { value: 'bagCount', label: 'pcs of bag' },
         { value: 'piecesPerBag', label: 'Pieces per Bag' },
         { value: 'piecesPerBox', label: 'Pieces per Box' },
-        { value: 'emptyContainerWeight', label: 'Empty Container Weight' },
-        { value: 'batchNumber', label: 'Batch Number' },
         { value: 'date', label: 'Date' },
         { value: 'skip', label: 'Skip / Ignore' }
       ]
     };
 
     // ── SETTINGS STATE ──
-    let settings = {
+    const DEFAULT_SETTINGS = {
       scanType: 'piece',
-      columns: [
-        { id: 1, field: 'itemName' },
-        { id: 2, field: 'grossWeight' },
-        { id: 3, field: 'netWeight' }
-      ]
+      columnsConfig: {
+        piece: [
+          { id: 1, field: 'batchNumber' },
+          { id: 2, field: 'itemName' },
+          { id: 3, field: 'grossWeight' },
+          { id: 4, field: 'netWeight' }
+        ],
+        box: [
+          { id: 1, field: 'batchNumber' },
+          { id: 2, field: 'itemName' },
+          { id: 3, field: 'grossWeight' },
+          { id: 4, field: 'netWeight' },
+          { id: 5, field: 'boxWeight' },
+          { id: 6, field: 'bagWeight' },
+          { id: 7, field: 'bagCount' }
+        ]
+      }
     };
 
-    let nextColumnId = 4;
+    let settings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
+
+    let nextColumnId = 8;
+
+    function resetToDefaults() {
+      if (!confirm('Are you sure you want to revert all settings to default? This will clear your custom column mappings.')) return;
+
+      localStorage.removeItem('ws_settings');
+      settings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
+      nextColumnId = 8;
+
+      document.getElementById('scanTypeSelect').value = settings.scanType;
+      renderColumns();
+      saveSettings();
+      showToast('✓ Settings reset to default');
+    }
 
     // ── SETTINGS MODAL ──
     function openSettings() {
@@ -1204,8 +1587,35 @@
         const saved = localStorage.getItem('ws_settings');
         if (saved) {
           const parsed = JSON.parse(saved);
-          settings = parsed;
-          nextColumnId = Math.max(...settings.columns.map(c => c.id)) + 1;
+
+          if (parsed.columns && !parsed.columnsConfig) {
+            // Migrate old format
+            settings.scanType = parsed.scanType || 'piece';
+            settings.columnsConfig = {
+              piece: parsed.columns,
+              box: [
+                { id: 1, field: 'itemName' },
+                { id: 2, field: 'grossWeight' },
+                { id: 3, field: 'netWeight' }
+              ]
+            };
+          } else if (parsed.columnsConfig) {
+            settings = parsed;
+          }
+
+          // Migrate old tareWeight to lessWeight
+          ['piece', 'box'].forEach(type => {
+            if (settings.columnsConfig[type]) {
+              settings.columnsConfig[type].forEach(col => {
+                if (col.field === 'tareWeight') col.field = 'lessWeight';
+              });
+            }
+          });
+
+          let maxId = 0;
+          if (settings.columnsConfig.piece) maxId = Math.max(maxId, ...settings.columnsConfig.piece.map(c => c.id));
+          if (settings.columnsConfig.box) maxId = Math.max(maxId, ...settings.columnsConfig.box.map(c => c.id));
+          nextColumnId = (isFinite(maxId) ? maxId : 0) + 1;
         }
       } catch (e) {
         console.error('Error loading settings:', e);
@@ -1218,19 +1628,16 @@
     function saveSettings() {
       try {
         localStorage.setItem('ws_settings', JSON.stringify(settings));
-        showToast('✓ Settings saved successfully');
-        setTimeout(() => closeSettings(), 500);
-      } catch (e) {
-        showToast('Error saving settings');
-      }
+      } catch (e) { }
     }
 
     // ── RENDER COLUMNS ──
     function renderColumns() {
       const container = document.getElementById('columnMapping');
       const fieldOptions = FIELD_OPTIONS[settings.scanType];
+      const cols = settings.columnsConfig[settings.scanType] || [];
 
-      container.innerHTML = settings.columns.map((col, index) => `
+      container.innerHTML = cols.map((col, index) => `
         <div class="column-row">
           <span class="column-label">Column ${index + 1}:</span>
           <select class="column-select" data-col-id="${col.id}" onchange="updateColumnField(${col.id}, this.value)">
@@ -1238,46 +1645,73 @@
         `<option value="${opt.value}" ${col.field === opt.value ? 'selected' : ''}>${opt.label}</option>`
       ).join('')}
           </select>
-          <button class="delete-col-btn" onclick="deleteColumn(${col.id})">🗑</button>
+          <button class="delete-col-btn" onclick="deleteColumn(${col.id})">
+            <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+          </button>
         </div>
       `).join('');
     }
 
     // ── ADD COLUMN ──
     function addColumn() {
-      if (settings.columns.length >= 9) {
-        showToast('Maximum 9 columns allowed');
-        return;
-      }
+      const cols = settings.columnsConfig[settings.scanType] || [];
 
-      settings.columns.push({
+      cols.push({
         id: nextColumnId++,
         field: 'skip'
       });
+      settings.columnsConfig[settings.scanType] = cols;
       renderColumns();
+      saveSettings();
     }
 
     // ── DELETE COLUMN ──
     function deleteColumn(id) {
-      if (settings.columns.length <= 1) {
+      let cols = settings.columnsConfig[settings.scanType] || [];
+      if (cols.length <= 1) {
         showToast('At least 1 column required');
         return;
       }
 
-      settings.columns = settings.columns.filter(c => c.id !== id);
+      cols = cols.filter(c => c.id !== id);
+      settings.columnsConfig[settings.scanType] = cols;
       renderColumns();
+      saveSettings();
     }
 
     // ── UPDATE COLUMN FIELD ──
     function updateColumnField(id, field) {
-      const col = settings.columns.find(c => c.id === id);
+      const cols = settings.columnsConfig[settings.scanType] || [];
+      const col = cols.find(c => c.id === id);
       if (col) col.field = field;
+      saveSettings();
     }
 
     // ── UPDATE FIELD OPTIONS ──
     function updateFieldOptions() {
       settings.scanType = document.getElementById('scanTypeSelect').value;
+      if (!settings.columnsConfig[settings.scanType]) {
+        if (settings.scanType === 'box') {
+          settings.columnsConfig.box = [
+            { id: nextColumnId++, field: 'batchNumber' },
+            { id: nextColumnId++, field: 'itemName' },
+            { id: nextColumnId++, field: 'grossWeight' },
+            { id: nextColumnId++, field: 'netWeight' },
+            { id: nextColumnId++, field: 'boxWeight' },
+            { id: nextColumnId++, field: 'bagWeight' },
+            { id: nextColumnId++, field: 'bagCount' }
+          ];
+        } else {
+          settings.columnsConfig.piece = [
+            { id: nextColumnId++, field: 'batchNumber' },
+            { id: nextColumnId++, field: 'itemName' },
+            { id: nextColumnId++, field: 'grossWeight' },
+            { id: nextColumnId++, field: 'netWeight' }
+          ];
+        }
+      }
       renderColumns();
+      saveSettings();
     }
 
     // ── TAB SWITCHING ──
@@ -1291,6 +1725,16 @@
       document.querySelectorAll('.tab-content').forEach(c => {
         c.classList.remove('active');
       });
+
+      // Show/Hide Install Bar
+      const installBar = document.getElementById('installBar');
+      if (installBar) {
+        if (tabName === 'home') {
+          installBar.classList.add('show');
+        } else {
+          installBar.classList.remove('show');
+        }
+      }
 
       if (tabName === 'home') {
         document.getElementById('homeTab').classList.add('active');
@@ -1368,74 +1812,143 @@
     })();
 
     // ── CAMERA ──
+    let ctx = null;
+    let lastTickTime = 0;
+    const TICK_INTERVAL = 150; // decode every 150ms only
+
     async function startCamera() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 30 } }
+          video: {
+            facingMode: 'environment',
+            width: { ideal: 1920 },
+            height: { ideal: 1080 },
+            frameRate: { ideal: 30 }
+          }
         });
+
         const video = document.getElementById('video');
         video.srcObject = stream;
         await video.play();
+
+        // Apply continuous autofocus AFTER stream starts (Samsung fix)
+        const track = stream.getVideoTracks()[0];
+        try {
+          await track.applyConstraints({
+            advanced: [{ focusMode: 'continuous' }]
+          });
+        } catch (e) { }
+
+        // Cache canvas context once
+        const canvas = document.getElementById('canvas');
+        ctx = canvas.getContext('2d');
+
         document.getElementById('camPlaceholder').style.display = 'none';
         document.getElementById('cameraWrap').style.display = 'block';
         scanning = true;
         requestAnimationFrame(tick);
+
       } catch (e) {
         showToast('Camera access denied. Allow in browser settings.');
       }
     }
 
-    function tick() {
+    function tick(timestamp) {
       if (!scanning) return;
+
+      requestAnimationFrame(tick);
+
+      // Throttle: only decode every 150ms
+      if (timestamp - lastTickTime < TICK_INTERVAL) return;
+      lastTickTime = timestamp;
+
       const video = document.getElementById('video');
+      if (video.readyState !== video.HAVE_ENOUGH_DATA) return;
+
       const canvas = document.getElementById('canvas');
-      if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        const scale = 0.5;
-        canvas.width = video.videoWidth * scale;
-        canvas.height = video.videoHeight * scale;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const code = jsQR(img.data, img.width, img.height, { inversionAttempts: 'dontInvert' });
-        if (code) {
-          const now = Date.now();
-          if (code.data !== lastCode || now - lastCodeTime > 1000) {
-            lastCode = code.data;
-            lastCodeTime = now;
-            processQR(code.data);
-          }
+
+      // Use 0.75 scale — balance speed vs accuracy
+      const scale = 0.75;
+      canvas.width = video.videoWidth * scale;
+      canvas.height = video.videoHeight * scale;
+
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+      const code = jsQR(img.data, img.width, img.height, {
+        inversionAttempts: 'attemptBoth'  // catches dark+light QR both
+      });
+
+      if (code) {
+        const now = Date.now();
+        if (code.data !== lastCode || now - lastCodeTime > 1000) {
+          lastCode = code.data;
+          lastCodeTime = now;
+          processQR(code.data);
         }
       }
-      requestAnimationFrame(tick);
     }
 
     // ── QR PARSING ──
     function processQR(raw) {
-      const parts = raw.split('\\').filter(Boolean);
+      const parts = raw.split('/');
+      const cols = settings.columnsConfig[settings.scanType] || [];
 
-      if (parts.length < settings.columns.length) {
+      if (parts.length < cols.length) {
         showToast('QR format mismatch - not enough values');
         return;
       }
 
       const data = {};
-      settings.columns.forEach((col, index) => {
+      cols.forEach((col, index) => {
         if (col.field !== 'skip' && parts[index]) {
           data[col.field] = parts[index].trim();
         }
       });
 
-      // Extract required fields
-      const name = data.itemName || 'Unknown';
-      const gross = parseFloat(data.grossWeight);
-      const net = parseFloat(data.netWeight);
+      // ── UNIQUE BAR NO CHECK ──
+      if (data.batchNumber) {
+        const isDuplicate = items.some(item => item.rawData && item.rawData.batchNumber === data.batchNumber);
+        if (isDuplicate) {
+          showToast(`Duplicate Bar No: ${data.batchNumber}`);
+          return;
+        }
+      }
 
-      if (isNaN(gross) || isNaN(net)) {
-        showToast('Invalid weight values in QR');
+      // Extract fields from QR based on mapping
+      const name = data.itemName || 'Unknown';
+      let gross = parseFloat(data.grossWeight);
+      let net = parseFloat(data.netWeight);
+      let lessVal = parseFloat(data.lessWeight);
+
+      // WEIGHT CALCULATION PRIORITY:
+      if (isNaN(gross) && isNaN(net)) {
+        showToast('At least Gross or Net weight mapping is needed!');
         return;
       }
 
-      const less = parseFloat((gross - net).toFixed(3));
+      if (!isNaN(net)) {
+        // 1. If Net is provided, use it as primary.
+        if (isNaN(gross)) gross = net;
+        if (isNaN(lessVal)) lessVal = parseFloat((gross - net).toFixed(3));
+      } else if (!isNaN(gross) && !isNaN(lessVal)) {
+        // 2. If Net is missing, but Gross and Less exist, calculate Net.
+        net = parseFloat((gross - lessVal).toFixed(3));
+      } else if (!isNaN(gross)) {
+        // 3. If only Gross exists, use it as Net.
+        net = gross;
+        lessVal = 0;
+      } else {
+        // 4. Default fallbacks
+        gross = isNaN(gross) ? 0 : gross;
+        net = isNaN(net) ? 0 : net;
+        lessVal = isNaN(lessVal) ? 0 : lessVal;
+      }
+
+      const less = parseFloat(lessVal.toFixed(3));
+      gross = parseFloat(gross.toFixed(3));
+      net = parseFloat(net.toFixed(3));
+
       const ts = new Date().toISOString();
 
       // Store all parsed data
@@ -1467,9 +1980,14 @@
 
     // ── RENDER ──
     function render() {
-      const total = items.reduce((s, i) => s + i.net, 0);
-      document.getElementById('totalVal').innerHTML = `${total.toFixed(3)}<span class="total-unit">g</span>`;
-      document.getElementById('scanCount').textContent = `${items.length} item${items.length !== 1 ? 's' : ''}`;
+      const totalNet = items.reduce((s, i) => s + i.net, 0);
+      const totalGross = items.reduce((s, i) => s + i.gross, 0);
+      const totalLess = items.reduce((s, i) => s + i.less, 0);
+
+      document.getElementById('totalVal').innerHTML = `${totalNet.toFixed(3)}<span class="total-unit">g</span>`;
+      document.getElementById('totalGross').innerHTML = `${totalGross.toFixed(3)}<span class="total-unit">g</span>`;
+      document.getElementById('totalLess').innerHTML = `${totalLess.toFixed(3)}<span class="total-unit">g</span>`;
+      document.getElementById('scanCount').textContent = `${items.length} item${items.length !== 1 ? 's' : ''} scanned`;
 
       const list = document.getElementById('itemsList');
       if (!items.length) {
@@ -1477,24 +1995,42 @@
         return;
       }
 
-      list.innerHTML = items.map((item, i) => `
+      list.innerHTML = items.map((item, i) => {
+        const getLabel = (key) => {
+          const opt = FIELD_OPTIONS.box.find(o => o.value === key);
+          return opt ? opt.label : key;
+        };
+
+        const extraChips = Object.entries(item.rawData || {})
+          .filter(([key, val]) => !['itemName', 'grossWeight', 'netWeight', 'lessWeight', 'tareWeight', 'skip'].includes(key) && val)
+          .map(([key, val]) => `<span class="weight-chip">${getLabel(key)}: ${esc(val)}</span>`)
+          .join('');
+
+        return `
     <div class="item-card">
       <div class="item-left">
         <div class="item-row1">
           <span class="item-num">#${items.length - i}</span>
           <span class="item-name">${esc(item.name)}</span>
         </div>
-        <div class="item-sub">G: ${item.gross.toFixed(3)}g &nbsp;·&nbsp; L: ${item.less.toFixed(3)}g</div>
+        <div class="item-sub">
+          <span class="weight-chip">G: ${item.gross.toFixed(3)}g</span>
+          <span class="weight-chip">L: ${item.less.toFixed(3)}g</span>
+          ${extraChips}
+        </div>
       </div>
       <div class="item-right">
         <div class="item-net">
-          <div class="net-val">${item.net.toFixed(3)}</div>
-          <span class="net-unit">g net</span>
-        </div>
-        <button class="delete-item-btn" onclick="deleteItem(${item.id})">🗑</button>
+          <div class="net-val">${item.net.toFixed(3)}g</div>
+          <span class="net-unit">Net weight</span>
+          </div>
+        <button class="delete-item-btn" onclick="deleteItem(${item.id})">
+          <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+        </button>
       </div>
     </div>
-  `).join('');
+  `;
+      }).join('');
     }
 
     function showLastScan(item) {
@@ -1521,35 +2057,162 @@
       render();
     }
 
-    // ── EXPORT JSON ──
-    function exportJSON() {
+    // ── EXPORT CSV ──
+    function exportCSV() {
       if (!items.length) { showToast('No items to export'); return; }
 
-      const total = items.reduce((s, i) => s + i.net, 0);
-      const data = {
-        exportedAt: new Date().toISOString(),
-        totalItems: items.length,
-        totalNetWeight: parseFloat(total.toFixed(3)),
-        unit: 'g',
-        items: items.map((item, i) => ({
-          sr: items.length - i,
-          name: item.name,
-          grossWeight: item.gross,
-          lessWeight: item.less,
-          netWeight: item.net,
-          scannedAt: item.scannedAt || null,
-          additionalData: item.rawData || {}
-        }))
+      // Identify extra fields
+      const extraFields = new Set();
+      items.forEach(item => {
+        Object.keys(item.rawData || {}).forEach(k => {
+          if (!['itemName', 'grossWeight', 'netWeight', 'lessWeight', 'tareWeight', 'skip'].includes(k)) {
+            extraFields.add(k);
+          }
+        });
+      });
+      const extraFieldsArr = Array.from(extraFields);
+
+      const getLabel = (key) => {
+        const opt = [...FIELD_OPTIONS.piece, ...FIELD_OPTIONS.box].find(o => o.value === key);
+        return opt ? opt.label : key;
       };
 
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      // Header
+      let csv = "Sr,Item Name,Gross,Less,Net,Date";
+      extraFieldsArr.forEach(f => { csv += `,${getLabel(f)}`; });
+      csv += "\n";
+
+      // Rows
+      let totalGross = 0;
+      let totalLess = 0;
+      let totalNet = 0;
+
+      const ascendingItems = [...items].reverse();
+      ascendingItems.forEach((item, i) => {
+        const sr = i + 1;
+        totalGross += item.gross;
+        totalLess += item.less;
+        totalNet += item.net;
+        let row = `${sr},"${item.name}",${item.gross.toFixed(3)},${item.less.toFixed(3)},${item.net.toFixed(3)},"${item.scannedAt || ''}"`;
+        extraFieldsArr.forEach(f => {
+          row += `,"${(item.rawData && item.rawData[f]) || ''}"`;
+        });
+        csv += row + "\n";
+      });
+
+      // Footer
+      csv += `\n,TOTAL,${totalGross.toFixed(3)},${totalLess.toFixed(3)},${totalNet.toFixed(3)},\n`;
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `weighscan_${new Date().toISOString().slice(0, 10)}.json`;
+      a.download = `weighscan_${new Date().toISOString().slice(0, 10)}.csv`;
       a.click();
       URL.revokeObjectURL(url);
     }
+
+    async function exportPDF() {
+      if (!items.length) { showToast('No items to export'); return; }
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Header
+      doc.setFontSize(18);
+      doc.setTextColor(48, 3, 78); // var(--accent) #30034e
+      doc.text("QrScan - Scanned Items Report", 14, 20);
+
+      doc.setFontSize(10);
+      doc.setTextColor(100);
+      doc.text(`Generated on: ${new Date().toLocaleString()}`, 14, 28);
+      doc.text("Provided By Shyam Software", 14, 33);
+
+      // Identify extra fields
+      const extraFields = new Set();
+      items.forEach(item => {
+        Object.keys(item.rawData || {}).forEach(k => {
+          if (!['itemName', 'grossWeight', 'netWeight', 'lessWeight', 'tareWeight', 'skip'].includes(k)) {
+            extraFields.add(k);
+          }
+        });
+      });
+      const extraFieldsArr = Array.from(extraFields);
+
+      const getLabel = (key) => {
+        const opt = [...FIELD_OPTIONS.piece, ...FIELD_OPTIONS.box].find(o => o.value === key);
+        return opt ? opt.label : key;
+      };
+
+      // Table Data
+      const head = [["Sr", "Item Name", "Gross", "Less", "Net", "Date", ...extraFieldsArr.map(getLabel)]];
+      const body = [];
+      let totalGross = 0;
+      let totalLess = 0;
+      let totalNet = 0;
+
+      const ascendingItems = [...items].reverse();
+      ascendingItems.forEach((item, i) => {
+        const sr = i + 1;
+        totalGross += item.gross;
+        totalLess += item.less;
+        totalNet += item.net;
+
+        const row = [
+          sr,
+          item.name,
+          item.gross.toFixed(3),
+          item.less.toFixed(3),
+          item.net.toFixed(3),
+          new Date(item.scannedAt).toLocaleDateString(),
+          ...extraFieldsArr.map(f => (item.rawData && item.rawData[f]) || '')
+        ];
+        body.push(row);
+      });
+
+      // Add Total Row
+      const footer = ["", "TOTAL", totalGross.toFixed(3), totalLess.toFixed(3), totalNet.toFixed(3), "", ...extraFieldsArr.map(() => "")];
+      body.push(footer);
+
+      doc.autoTable({
+        head: head,
+        body: body,
+        startY: 40,
+        theme: 'striped',
+        headStyles: { fillColor: [48, 3, 78] },
+        didParseCell: function (data) {
+          if (data.row.index === body.length - 1) {
+            data.cell.styles.fontStyle = 'bold';
+            data.cell.styles.fillColor = [232, 245, 238]; // var(--accent-light)
+            data.cell.styles.textColor = [48, 3, 78];
+          }
+        }
+      });
+
+      const fileName = `weighscan_${new Date().toISOString().slice(0, 10)}.pdf`;
+      const pdfOutput = doc.output('blob');
+
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([pdfOutput], fileName, { type: 'application/pdf' })] })) {
+        try {
+          const file = new File([pdfOutput], fileName, { type: 'application/pdf' });
+          await navigator.share({
+            files: [file],
+            title: 'QrScan Report',
+            text: 'Here is the scanned items report from QrScan app.'
+          });
+
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            doc.save(fileName);
+
+          }
+        }
+      } else {
+        doc.save(fileName);
+
+      }
+    }
+
 
     // ── TOAST ──
     function showToast(msg) {
@@ -1561,6 +2224,14 @@
 
     function esc(s) {
       return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function scrollCarousel(dir) {
+      const track = document.getElementById('softwareCarousel');
+      if (track) {
+        const slideWidth = track.clientWidth;
+        track.scrollBy({ left: dir * slideWidth, behavior: 'smooth' });
+      }
     }
   </script>
 </body>
